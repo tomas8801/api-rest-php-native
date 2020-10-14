@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Rewrite [lo que se escribe en la URL] [lo que apache debe procesar] [opciones extra]
+# los parentesis dentro de la ExReg nos permiten poner una variable.
+# el ^ indica que empieza la ExReg y el $ de que termina.
+# el * procesa o capta todos los caracteres.
+# $1 vendria a representar el primer parentesis..
+
+Rewrite ^([a-zA-Z0-9/:]*)$ index.php?recurso=$1
