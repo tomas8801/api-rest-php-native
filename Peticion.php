@@ -63,9 +63,17 @@ class Peticion
     {
         return new Peticion(array(
             'metodo' => $_SERVER['REQUEST_METHOD'],
-            'params' => $_SERVER['QUERY_STRING'],
+            'params' => explode('=', $_SERVER['QUERY_STRING'])[1],
             'cuerpo' => file_get_contents('php://input'),
             'cabeceras' => apache_request_headers()
         ));
+    }
+
+    // Comparar dos peticiones
+    public function is($peticion)
+    {
+        return 
+            strtolower($this->metodo) == strtolower($peticion->metodo()) &&
+            strtolower($this->params) == strtolower($peticion->params());
     }
 }

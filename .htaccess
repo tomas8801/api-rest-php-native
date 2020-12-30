@@ -1,3 +1,4 @@
+
 RewriteEngine On
 
 # Rewrite [lo que se escribe en la URL] [lo que apache debe procesar] [opciones extra]
@@ -6,4 +7,4 @@ RewriteEngine On
 # el * procesa o capta todos los caracteres.
 # $1 vendria a representar el primer parentesis..
 
-Rewrite ^([a-zA-Z0-9/:]*)$ index.php?recurso=$1
+RewriteRule ^([a-zA-Z0-9/:]*)$ index.php?recurso=$1

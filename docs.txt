@@ -1,1 +1,9 @@
 1. Peticion y Respuesta
+
+2. Enrutamiento
+
+3. Controladores / Acciones
+
+4. ORM / Modelos
+
+5. Autentificacion / Seguridad
