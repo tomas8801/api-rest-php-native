@@ -74,6 +74,7 @@ class Routing
         $ruta_a_procesar = array();
         foreach($this->rutas as $ruta) {
          if($ruta['peticion']->is(Peticion::actual())) {
+
             $encontrado = true;
             $ruta_a_procesar = $ruta;
          }
@@ -85,13 +86,21 @@ class Routing
             $respuesta = $ruta_a_procesar['respuesta']; // funcion
 
             // Principio de authorization
-            if(!isset($peticion->cabeceras()['Authorization'])) {
-                echo 'No estas autorizado';
-                die();
-            }
+            // if(!isset($peticion->cabeceras()['Authorization'])) {
+            //     echo 'No estas autorizado';
+            //     die();
+            // }
 
             if(is_string($respuesta)) {
+               
                 // Se paso una accion de controlador
+                $controller = explode("@", $respuesta)[0]."Controller";
+                $method     = explode("@", $respuesta)[1];
+
+                require "../api-php-nativo/Controllers/".$controller.".php";
+                $class = new $controller;
+                call_user_func(array($class, $method));
+
             } else if(is_callable($respuesta)){
                 // Se paso un callback directamente
                 $respuesta($peticion, new Respuesta());

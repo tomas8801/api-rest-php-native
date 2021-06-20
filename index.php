@@ -16,9 +16,9 @@ $routing->post('productos', function($req, $res){
     
 
         $res->json(array('productos' => 'nuevoProductoAGuardar'));
-
-
 });
+
+$routing->get('products', 'product@index');
 
 $routing->resolve();
 
